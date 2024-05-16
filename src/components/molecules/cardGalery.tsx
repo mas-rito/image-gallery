@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 import { Photo } from "pexels"
 
@@ -12,7 +13,13 @@ export const CardGalery = ({ image }: Props) => {
   return (
     <article className="group space-y-1">
       <div className="relative overflow-hidden rounded-lg">
-        <div className="invisible absolute left-0 top-0 z-10 h-full w-full rounded-lg bg-black/50 opacity-0 transition-all duration-100 group-hover:visible group-hover:opacity-100">
+        <div className="invisible absolute left-0 top-0 z-10 h-full w-full rounded-lg opacity-0 transition-all duration-100 group-hover:visible group-hover:opacity-100">
+          <Link
+            title="Lihat detail"
+            href={`/?image=${image.id}`}
+            scroll={false}
+            className="absolute left-0 top-0 h-full w-full bg-black/50"
+          />
           <div className="absolute bottom-1.5 left-0 flex w-full items-center justify-between px-1.5 lg:bottom-2.5 lg:px-3">
             <LinkFotoGrapher
               name={image.photographer}

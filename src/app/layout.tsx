@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google"
 
 import "./globals.css"
 
+import { ModalDetailGalery } from "@/components/molecules/modalDetailGalery"
 import { Navbar } from "@/components/molecules/navbar"
 
 const poppins = Poppins({
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <ModalDetailGalery />
         <Navbar />
         {children}
       </body>

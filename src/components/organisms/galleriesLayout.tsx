@@ -3,11 +3,9 @@
 import { Photo } from "pexels"
 
 import { useGetImages } from "@/hooks/useGetImages"
-import { useModal } from "@/hooks/useModal"
 
 import { CardGalery } from "../molecules/cardGalery"
 import { LoaderImage } from "../molecules/loaderImage"
-import { ModalDetailGalery } from "../molecules/modalDetailGalery"
 
 export const GalleriesLayout = () => {
   const { images, isLoading } = useGetImages()

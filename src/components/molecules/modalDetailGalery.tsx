@@ -105,3 +105,11 @@ export const ModalDetailGalery = () => {
     </div>
   )
 }
+
+export const ModalLoading = () => {
+  return (
+    <div className="flex h-svh w-svw items-center justify-center bg-white">
+      <Loader size={80} className="animate-spin-slow mx-auto text-red-600" />
+    </div>
+  )
+}

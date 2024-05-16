@@ -4,7 +4,7 @@ import { Logo } from "../atoms/logo"
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 w-full bg-white py-2 shadow-sm">
+    <nav className="fixed top-0 z-30 w-full bg-white py-2 shadow-sm">
       <div className="container flex items-center justify-between gap-x-5 md:gap-x-0">
         <div title="Image gallery">
           <Logo />

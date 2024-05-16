@@ -15,6 +15,9 @@ const config: Config = {
       colors: {
         primary: "#2563EB",
       },
+      animation: {
+        "spin-slow": "spin 2.3s linear infinite",
+      },
     },
   },
   plugins: [],

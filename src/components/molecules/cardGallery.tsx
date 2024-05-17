@@ -36,8 +36,8 @@ export const CardGallery = ({ image }: Props) => {
           width={700}
           height={700}
           loading="lazy"
-          className="max-w-full select-none transition-transform group-hover:scale-[1.03]"
-          src={image.src.original}
+          className="max-w-full select-none bg-zinc-200 transition-transform group-hover:scale-[1.03]"
+          src={image.src.large}
           alt={image.alt || "image"}
         />
       </div>

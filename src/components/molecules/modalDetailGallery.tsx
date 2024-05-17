@@ -49,7 +49,7 @@ export const ModalDetailGallery = () => {
                 height={700}
                 loading="lazy"
                 className="h-full w-full rounded-lg object-contain"
-                src={image?.src?.original}
+                src={image?.src?.original || ""}
                 alt={image?.alt || "image"}
               />
             )}

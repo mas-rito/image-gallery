@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Galeri Foto",
     description: "Temukan koleksi foto favoritmu disini!",
-    url: "https://galery.ritoramadhan.my.id",
+    url: "https://gallery.ritoramadhan.my.id",
     images: [
       {
-        url: `https://galery.ritoramadhan.my.id/thumbnail.jpg`,
+        url: `https://gallery.ritoramadhan.my.id/thumbnail.jpg`,
         width: 1920,
         height: 1080,
       },

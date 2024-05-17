@@ -21,7 +21,7 @@ export const GalleriesLayout = ({ isLoading, data, setInView }: Props) => {
   const { ref, inView } = useInView()
 
   useEffect(() => {
-    if (inView) setInView(inView)
+    setInView(inView)
   }, [inView])
 
   return (

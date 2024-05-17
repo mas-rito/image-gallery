@@ -5,7 +5,7 @@ import { Photo } from "pexels"
 // Seharusnya di simpan di .env untuk lebih aman
 // namun untuk mempermudahkan saat ibu/bapak menjalankan aplikasi ini
 const PEXELS_API_KEY =
-  "h1nBhUJKKQP94M6AZCXodzMRLFIuI7OA7DttYEciDZi1Q1JRCFXDHoc1"
+  "2l8p5PzPE6rfnRX1u6vU6icUiWIx2xVv4g34sbmbSYJX87AVOQ5R2zFI"
 
 type UseGetImagesParams = {
   fetchAgain: boolean

@@ -24,13 +24,15 @@ export default function SearchPage({ params }: Props) {
   useEffect(() => {
     setData((prevData) => [...prevData, ...images])
   }, [images])
+
+  const decodedQuery = decodeURIComponent(params.query)
+
   return (
     <div className="space-y-4">
       <div className="container border-b border-zinc-200 pb-3">
         <h1 className="text-3xl font-medium">
-          Hasil Pencarian dari &quot;{params.query}&quot;
+          Hasil Pencarian dari &quot;{decodedQuery}&quot;
         </h1>
-        {/* <p className="text-zinc-500">&quot;{params.query} &quot;</p> */}
       </div>
       <GalleriesLayout
         isLoading={isLoading}

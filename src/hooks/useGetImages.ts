@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react"
 
-import { createClient, Photo } from "pexels"
+import { Photo } from "pexels"
 
 // Seharusnya di simpan di .env untuk lebih aman
 // namun untuk mempermudahkan saat ibu/bapak menjalankan aplikasi ini
 const PEXELS_API_KEY =
   "h1nBhUJKKQP94M6AZCXodzMRLFIuI7OA7DttYEciDZi1Q1JRCFXDHoc1"
 
-export const useGetImages = () => {
+export const useGetImages = ({ fetchAgain }: { fetchAgain: boolean }) => {
   const [images, setImages] = useState<Photo[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [page, setPage] = useState<number>(1)
 
   useEffect(() => {
     async function getImages() {
-      fetch(`https://api.pexels.com/v1/curated?per_page=28`, {
+      const nextPage = page + 1
+      setPage(nextPage)
+      fetch(`https://api.pexels.com/v1/curated?per_page=28&page=${page}`, {
         headers: {
           Authorization: PEXELS_API_KEY,
         },
@@ -26,7 +29,9 @@ export const useGetImages = () => {
     }
 
     getImages()
-  }, [])
+  }, [fetchAgain])
+
+  console.log(page)
 
   return { images, isLoading }
 }

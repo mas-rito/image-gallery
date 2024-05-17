@@ -41,7 +41,7 @@ export const CardGallery = ({ image }: Props) => {
           alt={image.alt || "image"}
         />
       </div>
-      <h2 className="text-xs font-medium text-zinc-700 md:text-sm">
+      <h2 className="line-clamp-2 text-xs font-medium text-zinc-700 md:text-sm">
         {image.alt}
       </h2>
     </div>

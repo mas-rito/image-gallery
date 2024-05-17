@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { Search } from "lucide-react"
 
 import { Logo } from "../atoms/logo"
@@ -6,9 +8,9 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 z-30 w-full bg-white py-2 shadow-sm">
       <div className="container flex items-center justify-between gap-x-5 md:gap-x-0">
-        <div title="Image gallery">
+        <Link href="/" title="Image gallery">
           <Logo />
-        </div>
+        </Link>
         <div className="relative h-full w-full md:w-1/2 lg:w-1/3">
           <input
             type="text"

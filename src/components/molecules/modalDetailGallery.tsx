@@ -47,9 +47,9 @@ export const ModalDetailGallery = () => {
               <Image
                 width={700}
                 height={700}
-                loading="lazy"
+                priority
                 className="h-full w-full rounded-lg object-contain"
-                src={image?.src?.original || ""}
+                src={image?.src?.large2x || ""}
                 alt={image?.alt || "image"}
               />
             )}

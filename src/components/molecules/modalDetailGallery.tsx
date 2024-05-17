@@ -29,7 +29,7 @@ export const ModalDetailGallery = () => {
       className={`${imageId ? "visible opacity-100" : "invisible opacity-0"} fixed inset-0 z-40 transition-all`}
     >
       <section className="h-svh w-full overflow-y-auto bg-black/70 py-8 backdrop-blur">
-        <div className="relative mx-auto grid w-10/12 grid-cols-6 gap-2">
+        <div className="relative mx-auto grid w-10/12 grid-cols-1 gap-2 lg:grid-cols-6">
           <div className="absolute -right-3.5 -top-3.5">
             <Link
               href="/"
@@ -40,7 +40,7 @@ export const ModalDetailGallery = () => {
               <X />
             </Link>
           </div>
-          <div className="col-span-4 h-[90vh] rounded-xl bg-white p-2 shadow">
+          <div className="col-span-1 h-[90vh] rounded-xl bg-white p-2 shadow lg:col-span-4">
             {imageIsLoading ? (
               <Skeleton className="h-full w-full rounded-lg" />
             ) : (
@@ -54,14 +54,14 @@ export const ModalDetailGallery = () => {
               />
             )}
           </div>
-          <div className="col-span-2 h-fit space-y-2 rounded-xl bg-white px-4 pb-6 pt-4 shadow">
-            <h2 className="text-lg text-zinc-600">Tentang foto</h2>
+          <div className="col-span-1 h-fit space-y-2 rounded-xl bg-white px-4 pb-6 pt-4 shadow lg:col-span-2">
+            <h2 className="text-zinc-600 md:text-lg">Tentang foto</h2>
             <div className="space-y-10">
               <div className="space-y-6">
                 {imageIsLoading ? (
                   <Skeleton className="h-8 w-full rounded-lg" />
                 ) : (
-                  <h1 className="text-2xl font-medium">
+                  <h1 className="text-lg font-medium md:text-2xl">
                     {image?.alt || "image"}
                   </h1>
                 )}
@@ -70,10 +70,12 @@ export const ModalDetailGallery = () => {
                   {imageIsLoading ? (
                     <Skeleton className="h-12 w-full rounded-full" />
                   ) : (
-                    <div className="flex items-center justify-between gap-x-4 rounded-full bg-zinc-50 p-1">
+                    <div className="flex w-full items-center justify-between gap-x-4 rounded-full bg-zinc-50 p-1">
                       <div className="flex items-center gap-x-2 rounded-full bg-zinc-200 py-2 pe-3.5 ps-2.5 text-zinc-700 transition-opacity hover:opacity-90">
                         <CircleUserRound />
-                        <h3 className="truncate">{image?.photographer}</h3>
+                        <h3 className="max-w-28 truncate md:max-w-full">
+                          {image?.photographer}
+                        </h3>
                       </div>
                       <Link
                         href={image?.photographer_url || "#"}

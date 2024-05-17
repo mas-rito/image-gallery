@@ -19,7 +19,7 @@ export const GalleriesLayout = () => {
   const { images, isLoading } = useGetImages({ fetchAgain: inView })
 
   useEffect(() => {
-    setData([...data, ...images])
+    setData((prevData) => [...prevData, ...images])
   }, [images])
 
   return (

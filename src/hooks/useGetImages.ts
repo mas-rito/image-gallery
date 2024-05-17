@@ -31,8 +31,6 @@ export const useGetImages = ({ fetchAgain }: { fetchAgain: boolean }) => {
     getImages()
   }, [fetchAgain])
 
-  console.log(page)
-
   return { images, isLoading }
 }
 

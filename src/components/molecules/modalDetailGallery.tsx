@@ -11,7 +11,7 @@ import { useGetSigleImage } from "@/hooks/useGetImages"
 
 import { Skeleton } from "../atoms/skeleton"
 
-export const ModalDetailGalery = () => {
+export const ModalDetailGallery = () => {
   const searchParams = useSearchParams()
   const imageId = searchParams.get("image")
 
@@ -33,6 +33,7 @@ export const ModalDetailGalery = () => {
           <div className="absolute -right-3.5 -top-3.5">
             <Link
               href="/"
+              scroll={false}
               className="block rounded-full border border-zinc-700 bg-white p-2 text-zinc-900"
               title="Kembali"
             >
@@ -93,7 +94,7 @@ export const ModalDetailGalery = () => {
                 className="w-full rounded-full bg-red-600 py-3 text-center text-white transition-opacity hover:opacity-90 disabled:opacity-90"
               >
                 {isLoading ? (
-                  <Loader className="animate-spin-slow mx-auto h-5 w-5 md:h-6 md:w-6" />
+                  <Loader className="mx-auto h-5 w-5 animate-spin-slow md:h-6 md:w-6" />
                 ) : (
                   "Download"
                 )}
@@ -109,7 +110,7 @@ export const ModalDetailGalery = () => {
 export const ModalLoading = () => {
   return (
     <div className="flex h-svh w-svw items-center justify-center bg-white">
-      <Loader size={80} className="animate-spin-slow mx-auto text-red-600" />
+      <Loader size={80} className="mx-auto animate-spin-slow text-red-600" />
     </div>
   )
 }

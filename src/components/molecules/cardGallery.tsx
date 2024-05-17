@@ -9,9 +9,9 @@ type Props = {
   image: Photo
 }
 
-export const CardGalery = ({ image }: Props) => {
+export const CardGallery = ({ image }: Props) => {
   return (
-    <article className="group space-y-1">
+    <div className="group space-y-1 overflow-hidden">
       <div className="relative overflow-hidden rounded-lg">
         <div className="invisible absolute left-0 top-0 z-10 h-full w-full rounded-lg opacity-0 transition-all duration-100 group-hover:visible group-hover:opacity-100">
           <Link
@@ -41,7 +41,9 @@ export const CardGalery = ({ image }: Props) => {
           alt={image.alt || "image"}
         />
       </div>
-      <h2 className="text-sm font-medium text-zinc-700">{image.alt}</h2>
-    </article>
+      <h2 className="text-xs font-medium text-zinc-700 md:text-sm">
+        {image.alt}
+      </h2>
+    </div>
   )
 }

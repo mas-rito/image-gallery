@@ -5,6 +5,7 @@ import "./globals.css"
 
 import { Suspense } from "react"
 
+import { ProgressBar } from "@/components/atoms/progressBar"
 import {
   ModalDetailGallery,
   ModalLoading,
@@ -42,6 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <ProgressBar />
         <Suspense fallback={<ModalLoading />}>
           <ModalDetailGallery />
         </Suspense>

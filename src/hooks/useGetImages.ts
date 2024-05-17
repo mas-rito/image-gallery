@@ -7,7 +7,11 @@ import { Photo } from "pexels"
 const PEXELS_API_KEY =
   "h1nBhUJKKQP94M6AZCXodzMRLFIuI7OA7DttYEciDZi1Q1JRCFXDHoc1"
 
-export const useGetImages = ({ fetchAgain }: { fetchAgain: boolean }) => {
+type UseGetImagesParams = {
+  fetchAgain: boolean
+}
+
+export const useGetImages = ({ fetchAgain }: UseGetImagesParams) => {
   const [images, setImages] = useState<Photo[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [page, setPage] = useState<number>(1)
@@ -16,7 +20,9 @@ export const useGetImages = ({ fetchAgain }: { fetchAgain: boolean }) => {
     async function getImages() {
       const nextPage = page + 1
       setPage(nextPage)
-      fetch(`https://api.pexels.com/v1/curated?per_page=28&page=${page}`, {
+      const url = `https://api.pexels.com/v1/curated?per_page=28&page=${page}`
+
+      fetch(url, {
         headers: {
           Authorization: PEXELS_API_KEY,
         },
@@ -34,7 +40,11 @@ export const useGetImages = ({ fetchAgain }: { fetchAgain: boolean }) => {
   return { images, isLoading }
 }
 
-export const useGetSigleImage = ({ imageId }: { imageId: string }) => {
+type UseGetSigleImageParams = {
+  imageId: string
+}
+
+export const useGetSigleImage = ({ imageId }: UseGetSigleImageParams) => {
   const [image, setImage] = useState<Photo>({} as Photo)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -57,4 +67,42 @@ export const useGetSigleImage = ({ imageId }: { imageId: string }) => {
   }, [imageId])
 
   return { image, isLoading }
+}
+
+type UseSearchImagesParams = {
+  fetchAgain: boolean
+  query: string
+}
+
+export const useSearchImages = ({
+  fetchAgain,
+  query,
+}: UseSearchImagesParams) => {
+  const [images, setImages] = useState<Photo[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [page, setPage] = useState<number>(1)
+
+  useEffect(() => {
+    async function getImages() {
+      const nextPage = page + 1
+      setPage(nextPage)
+
+      const url = `https://api.pexels.com/v1/search?query=${query}&per_page=28&page=${page}`
+
+      fetch(url, {
+        headers: {
+          Authorization: PEXELS_API_KEY,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setImages(data.photos)
+          setIsLoading(false)
+        })
+    }
+
+    getImages()
+  }, [fetchAgain, query])
+
+  return { images, isLoading }
 }

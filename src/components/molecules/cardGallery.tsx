@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import { Photo } from "pexels"
 
@@ -10,13 +11,14 @@ type Props = {
 }
 
 export const CardGallery = ({ image }: Props) => {
+  const pathname = usePathname()
   return (
     <div className="group space-y-1 overflow-hidden">
       <div className="relative overflow-hidden rounded-lg">
         <div className="invisible absolute left-0 top-0 z-10 h-full w-full rounded-lg opacity-0 transition-all duration-100 group-hover:visible group-hover:opacity-100">
           <Link
             title="Lihat detail"
-            href={`/?image=${image.id}`}
+            href={`${pathname}?image=${image.id}`}
             scroll={false}
             className="absolute left-0 top-0 h-full w-full bg-black/50"
           />

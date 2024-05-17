@@ -1,30 +1,32 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 import { Loader } from "lucide-react"
 import { Photo } from "pexels"
 import { useInView } from "react-intersection-observer"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
-import { useGetImages } from "@/hooks/useGetImages"
-
 import { EmptyData } from "../atoms/emptydata"
 import { LoaderImage } from "../atoms/loaderImage"
 import { CardGallery } from "../molecules/cardGallery"
 
-export const GalleriesLayout = () => {
-  const [data, setData] = useState<Photo[]>([])
+type Props = {
+  isLoading: boolean
+  data: Photo[]
+  setInView: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const GalleriesLayout = ({ isLoading, data, setInView }: Props) => {
   const { ref, inView } = useInView()
-  const { images, isLoading } = useGetImages({ fetchAgain: inView })
 
   useEffect(() => {
-    setData((prevData) => [...prevData, ...images])
-  }, [images])
+    if (inView) setInView(inView)
+  }, [inView])
 
   return (
     <>
-      <section className="container mt-[5.5rem]">
+      <section className="container">
         {isLoading ? (
           <div className="mt-64">
             <LoaderImage />

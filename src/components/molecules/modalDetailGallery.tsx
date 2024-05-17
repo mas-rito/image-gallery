@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import { ArrowUpRight, CircleUserRound, Loader, X } from "lucide-react"
 
@@ -14,6 +14,7 @@ import { Skeleton } from "../atoms/skeleton"
 export const ModalDetailGallery = () => {
   const searchParams = useSearchParams()
   const imageId = searchParams.get("image")
+  const router = useRouter()
 
   const { image, isLoading: imageIsLoading } = useGetSigleImage({
     imageId: imageId as string,
@@ -24,6 +25,10 @@ export const ModalDetailGallery = () => {
     filename: image?.alt || "image",
   })
 
+  const handleCloseModal = () => {
+    router.back()
+  }
+
   return (
     <div
       className={`${imageId ? "visible opacity-100" : "invisible opacity-0"} fixed inset-0 z-40 transition-all`}
@@ -31,14 +36,13 @@ export const ModalDetailGallery = () => {
       <section className="h-svh w-full  overflow-y-auto bg-black/70 py-8 backdrop-blur">
         <div className="relative mx-auto grid w-11/12 max-w-screen-xl grid-cols-1 gap-2 lg:w-10/12 lg:grid-cols-6">
           <div className="absolute -right-3 -top-3 md:-right-3.5 md:-top-3.5">
-            <Link
-              href="/"
-              scroll={false}
+            <button
+              onClick={handleCloseModal}
               className="block rounded-full border border-zinc-700 bg-white p-2 text-zinc-900"
               title="Kembali"
             >
               <X className="h-5 w-5 md:h-6 md:w-6" />
-            </Link>
+            </button>
           </div>
           <div className="col-span-1 rounded-xl bg-white p-2 shadow md:h-[80svh] lg:col-span-4 lg:h-[90vh]">
             {imageIsLoading ? (

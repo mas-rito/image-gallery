@@ -1,6 +1,6 @@
 # Image Gallery
 
-![App Screenshot](https://gallery.ritoramadhan.my.id/thumbnail.jpg)
+![App Screenshot](https://gallery.ritoramadhan.my.id/thumbnail.png)
 
 Temukan dan simpan gambar favorit Anda dengan mudah melalui aplikasi galeri web ini. Fitur infinite scroll memungkinkan Anda menjelajahi gambar tanpa henti, download gambar untuk menyimpannya ke perangkat, dan pencarian gambar untuk menemukan gambar yang Anda inginkan dengan cepat.
 

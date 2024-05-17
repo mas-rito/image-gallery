@@ -28,19 +28,19 @@ export const ModalDetailGallery = () => {
     <div
       className={`${imageId ? "visible opacity-100" : "invisible opacity-0"} fixed inset-0 z-40 transition-all`}
     >
-      <section className="h-svh w-full overflow-y-auto bg-black/70 py-8 backdrop-blur">
-        <div className="relative mx-auto grid w-10/12 grid-cols-1 gap-2 lg:grid-cols-6">
-          <div className="absolute -right-3.5 -top-3.5">
+      <section className="h-svh w-full  overflow-y-auto bg-black/70 py-8 backdrop-blur">
+        <div className="relative mx-auto grid w-11/12 max-w-screen-xl grid-cols-1 gap-2 lg:w-10/12 lg:grid-cols-6">
+          <div className="absolute -right-3 -top-3 md:-right-3.5 md:-top-3.5">
             <Link
               href="/"
               scroll={false}
               className="block rounded-full border border-zinc-700 bg-white p-2 text-zinc-900"
               title="Kembali"
             >
-              <X />
+              <X className="h-5 w-5 md:h-6 md:w-6" />
             </Link>
           </div>
-          <div className="col-span-1 h-[90vh] rounded-xl bg-white p-2 shadow lg:col-span-4">
+          <div className="col-span-1 rounded-xl bg-white p-2 shadow md:h-[80svh] lg:col-span-4 lg:h-[90vh]">
             {imageIsLoading ? (
               <Skeleton className="h-full w-full rounded-lg" />
             ) : (
@@ -62,7 +62,7 @@ export const ModalDetailGallery = () => {
                   <Skeleton className="h-8 w-full rounded-lg" />
                 ) : (
                   <h1 className="text-lg font-medium md:text-2xl">
-                    {image?.alt || "image"}
+                    {image?.alt || ""}
                   </h1>
                 )}
                 <div className="space-y-2">

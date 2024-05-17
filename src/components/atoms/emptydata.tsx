@@ -4,7 +4,7 @@ import { ArrowUpRight, PackageOpen } from "lucide-react"
 
 export const EmptyData = () => {
   return (
-    <div className="mt-64">
+    <div className="mt-40">
       <div className="mx-auto space-y-8">
         <div className="space-y-2">
           <PackageOpen size={80} className="mx-auto text-red-600" />

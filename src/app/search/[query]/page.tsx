@@ -15,14 +15,16 @@ type Props = {
 export default function SearchPage({ params }: Props) {
   const [data, setData] = useState<Photo[]>([])
   const [inView, setInView] = useState<boolean>(false)
+  const [isSetDataLoading, setIsSetDataLoading] = useState<boolean>(true)
 
-  const { images, isLoading } = useSearchImages({
+  const { images } = useSearchImages({
     fetchAgain: inView,
     query: params.query,
   })
 
   useEffect(() => {
     setData((prevData) => [...prevData, ...images])
+    setIsSetDataLoading(false)
   }, [images])
 
   const decodedQuery = decodeURIComponent(params.query)
@@ -35,7 +37,8 @@ export default function SearchPage({ params }: Props) {
         </h1>
       </div>
       <GalleriesLayout
-        isLoading={isLoading}
+        isLoading={isSetDataLoading}
+        isDataEmpty={data.length < 0}
         data={data}
         setInView={setInView}
       />

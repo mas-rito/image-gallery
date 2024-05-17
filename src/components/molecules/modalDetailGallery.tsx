@@ -33,7 +33,7 @@ export const ModalDetailGallery = () => {
     <div
       className={`${imageId ? "visible opacity-100" : "invisible opacity-0"} fixed inset-0 z-40 transition-all`}
     >
-      <section className="h-svh w-full  overflow-y-auto bg-black/70 py-8 backdrop-blur">
+      <section className="h-screen w-full overflow-y-auto bg-black/70 py-8 backdrop-blur">
         <div className="relative mx-auto grid w-11/12 max-w-screen-xl grid-cols-1 gap-2 lg:w-10/12 lg:grid-cols-6">
           <div className="absolute -right-3 -top-3 md:-right-3.5 md:-top-3.5">
             <button
@@ -44,7 +44,7 @@ export const ModalDetailGallery = () => {
               <X className="h-5 w-5 md:h-6 md:w-6" />
             </button>
           </div>
-          <div className="col-span-1 rounded-xl bg-white p-2 shadow md:h-[80svh] lg:col-span-4 lg:h-[90vh]">
+          <div className="col-span-1 min-h-64 rounded-xl bg-white p-2 shadow md:h-[80svh] lg:col-span-4 lg:h-[90vh]">
             {imageIsLoading ? (
               <Skeleton className="h-full w-full rounded-lg" />
             ) : (

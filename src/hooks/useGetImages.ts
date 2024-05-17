@@ -13,7 +13,6 @@ type UseGetImagesParams = {
 
 export const useGetImages = ({ fetchAgain }: UseGetImagesParams) => {
   const [images, setImages] = useState<Photo[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [page, setPage] = useState<number>(1)
 
   useEffect(() => {
@@ -30,14 +29,13 @@ export const useGetImages = ({ fetchAgain }: UseGetImagesParams) => {
         .then((response) => response.json())
         .then((data) => {
           setImages(data.photos)
-          setIsLoading(false)
         })
     }
 
     getImages()
   }, [fetchAgain])
 
-  return { images, isLoading }
+  return { images }
 }
 
 type UseGetSigleImageParams = {
@@ -79,7 +77,6 @@ export const useSearchImages = ({
   query,
 }: UseSearchImagesParams) => {
   const [images, setImages] = useState<Photo[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [page, setPage] = useState<number>(1)
 
   useEffect(() => {
@@ -97,12 +94,11 @@ export const useSearchImages = ({
         .then((response) => response.json())
         .then((data) => {
           setImages(data.photos)
-          setIsLoading(false)
         })
     }
 
     getImages()
   }, [fetchAgain, query])
 
-  return { images, isLoading }
+  return { images }
 }

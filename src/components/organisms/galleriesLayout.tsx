@@ -15,9 +15,15 @@ type Props = {
   isLoading: boolean
   data: Photo[]
   setInView: React.Dispatch<React.SetStateAction<boolean>>
+  isDataEmpty: boolean
 }
 
-export const GalleriesLayout = ({ isLoading, data, setInView }: Props) => {
+export const GalleriesLayout = ({
+  isLoading,
+  data,
+  setInView,
+  isDataEmpty,
+}: Props) => {
   const { ref, inView } = useInView()
 
   useEffect(() => {
@@ -28,35 +34,38 @@ export const GalleriesLayout = ({ isLoading, data, setInView }: Props) => {
     <>
       <section className="container">
         {isLoading ? (
-          <div className="mt-64">
-            <LoaderImage />
-          </div>
+          <LoaderImage />
         ) : (
           <div className="">
-            {data.length > 0 ? (
-              <ResponsiveMasonry
-                columnsCountBreakPoints={{
-                  350: 2,
-                  750: 3,
-                  900: 4,
-                  1200: 5,
-                }}
-              >
-                <Masonry gutter="1rem">
-                  {data.map((image, index) => (
-                    <CardGallery key={index} image={image} />
-                  ))}
-                </Masonry>
-              </ResponsiveMasonry>
-            ) : (
+            {isDataEmpty ? (
               <EmptyData />
-            )}
-          </div>
-        )}
+            ) : (
+              <>
+                <div className="min-h-screen">
+                  <ResponsiveMasonry
+                    columnsCountBreakPoints={{
+                      350: 2,
+                      750: 3,
+                      900: 4,
+                      1200: 5,
+                    }}
+                  >
+                    <Masonry gutter="1rem">
+                      {data.map((image, index) => (
+                        <CardGallery key={index} image={image} />
+                      ))}
+                    </Masonry>
+                  </ResponsiveMasonry>
+                </div>
 
-        {isLoading === false && data.length > 0 && (
-          <div ref={ref} className="bg -mt-48 flex justify-center pb-8 pt-44">
-            <Loader className="animate-spin-slow text-red-600" />
+                <div
+                  ref={ref}
+                  className="bg -mt-48 flex justify-center pb-8 pt-52 lg:pt-44"
+                >
+                  <Loader className="animate-spin-slow text-red-600" />
+                </div>
+              </>
+            )}
           </div>
         )}
       </section>

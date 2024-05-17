@@ -50,7 +50,7 @@ export default function RootLayout({
           <ModalDetailGallery />
         </Suspense>
         <Navbar />
-        <main className="mt-20 space-y-4">
+        <main className="mt-20 space-y-2 lg:space-y-4">
           <CategoryImage />
           {children}
         </main>

@@ -53,7 +53,7 @@ export const ModalDetailGallery = () => {
                 height={700}
                 priority
                 className="h-full w-full rounded-lg object-contain"
-                src={image?.src?.large2x || ""}
+                src={image?.src?.large2x || "/"}
                 alt={image?.alt || "image"}
               />
             )}

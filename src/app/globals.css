@@ -5,3 +5,7 @@
 body {
   @apply text-zinc-900;
 }
+
+.scroll-bar {
+  scrollbar-width: none;
+}

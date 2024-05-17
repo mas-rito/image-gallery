@@ -21,8 +21,15 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 z-30 w-full bg-white py-2 shadow-sm">
       <div className="container flex items-center justify-between gap-x-5 md:gap-x-0">
-        <Link href="/" title="Image gallery">
+        <Link
+          href="/"
+          title="Image gallery"
+          className="flex items-center gap-x-3 transition-opacity hover:opacity-90"
+        >
           <Logo />
+          <h1 className="hidden text-2xl font-semibold text-zinc-800 md:block">
+            Image <span className="text-red-600">gallery</span>
+          </h1>
         </Link>
         <form
           onSubmit={handleSearch}

@@ -43,8 +43,8 @@ export const GalleriesLayout = ({ isLoading, data, setInView }: Props) => {
                 }}
               >
                 <Masonry gutter="1rem">
-                  {data.map((image) => (
-                    <CardGallery key={image.id} image={image} />
+                  {data.map((image, index) => (
+                    <CardGallery key={index} image={image} />
                   ))}
                 </Masonry>
               </ResponsiveMasonry>

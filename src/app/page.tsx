@@ -18,12 +18,12 @@ export default function Home() {
     setData((prevData) => [...prevData, ...images])
   }, [images])
   return (
-    <main className="mt-[5.5rem]">
+    <>
       <GalleriesLayout
         isLoading={isLoading}
         data={data}
         setInView={setInView}
       />
-    </main>
+    </>
   )
 }

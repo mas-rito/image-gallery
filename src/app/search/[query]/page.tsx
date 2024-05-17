@@ -25,7 +25,7 @@ export default function SearchPage({ params }: Props) {
     setData((prevData) => [...prevData, ...images])
   }, [images])
   return (
-    <main className="mt-[5.5rem] space-y-4">
+    <div className="space-y-4">
       <div className="container border-b border-zinc-200 pb-3">
         <h1 className="text-3xl font-medium">
           Hasil Pencarian dari &quot;{params.query}&quot;
@@ -37,6 +37,6 @@ export default function SearchPage({ params }: Props) {
         data={data}
         setInView={setInView}
       />
-    </main>
+    </div>
   )
 }

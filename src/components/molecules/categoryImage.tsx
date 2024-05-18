@@ -42,6 +42,7 @@ export const CategoryImage = () => {
           <Link
             href={`/search/${category}`}
             key={category}
+            title={`Temukan foto ${category}`}
             className={`${pathname === `/search/${category}` ? "bg-red-600 text-white" : "bg-zinc-200 text-zinc-600"} block rounded-full px-4 py-1.5 text-xs font-medium transition-opacity hover:opacity-85`}
           >
             {category}

@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `https://gallery.ritoramadhan.my.id/thumbnail.png`,
-        width: 1920,
-        height: 1080,
+        width: 920,
+        height: 520,
       },
     ],
     type: "website",

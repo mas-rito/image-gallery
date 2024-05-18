@@ -33,12 +33,12 @@ export const Navbar = () => {
         </Link>
         <form
           onSubmit={handleSearch}
+          title="Cari gambar"
           className="relative h-full w-full md:w-1/2 lg:w-1/3"
         >
           <input
             type="text"
             placeholder="Cari..."
-            title="Cari gambar"
             name="search"
             className="h-full w-full rounded-full py-2 pe-11 ps-4 text-zinc-700 outline outline-1 outline-zinc-200"
           />

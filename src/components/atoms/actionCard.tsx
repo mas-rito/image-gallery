@@ -14,6 +14,7 @@ export const LinkFotoGrapher = ({ name, href }: LinkFotoGrapherProps) => {
     <Link
       href={href}
       target="_blank"
+      title="Profile photographer"
       className="flex select-none items-center gap-x-1 rounded-full bg-white/90 px-2.5 py-1 transition-opacity hover:bg-white"
     >
       <ArrowUpRight size={16} />
@@ -35,10 +36,11 @@ export const DownloadImage = ({ url, filename }: DownloadImageProps) => {
   return (
     <button
       onClick={download}
+      title="Download foto"
       className="rounded-full bg-white/90 p-2 transition-opacity hover:bg-white"
     >
       {isLoading ? (
-        <Loader className="animate-spin-slow h-5 w-5 text-red-600 md:h-6 md:w-6" />
+        <Loader className="h-5 w-5 animate-spin-slow text-red-600 md:h-6 md:w-6" />
       ) : (
         <Download className="h-5 w-5 md:h-6 md:w-6" />
       )}

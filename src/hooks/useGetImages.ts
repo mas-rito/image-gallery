@@ -2,11 +2,9 @@ import { useEffect, useState } from "react"
 
 import { Photo } from "pexels"
 
-// Seharusnya di simpan di .env untuk lebih aman
-// namun untuk mempermudahkan saat ibu/bapak menjalankan aplikasi ini
-const PEXELS_API_KEY =
-  "2l8p5PzPE6rfnRX1u6vU6icUiWIx2xVv4g34sbmbSYJX87AVOQ5R2zFI"
-
+const headers: Record<string, string> = {
+  Authorization: process.env.PEXELS_API_KEY as string,
+}
 type UseGetImagesParams = {
   fetchAgain: boolean
 }
@@ -22,9 +20,7 @@ export const useGetImages = ({ fetchAgain }: UseGetImagesParams) => {
       const url = `https://api.pexels.com/v1/curated?per_page=28&page=${page}`
 
       fetch(url, {
-        headers: {
-          Authorization: PEXELS_API_KEY,
-        },
+        headers: headers,
       })
         .then((response) => response.json())
         .then((data) => {
@@ -50,9 +46,7 @@ export const useGetSigleImage = ({ imageId }: UseGetSigleImageParams) => {
     async function getImage() {
       setIsLoading(true)
       fetch(`https://api.pexels.com/v1/photos/${imageId}`, {
-        headers: {
-          Authorization: PEXELS_API_KEY,
-        },
+        headers: headers,
       })
         .then((response) => response.json())
         .then((data) => {
@@ -87,9 +81,7 @@ export const useSearchImages = ({
       const url = `https://api.pexels.com/v1/search?query=${query}&per_page=28&page=${page}`
 
       fetch(url, {
-        headers: {
-          Authorization: PEXELS_API_KEY,
-        },
+        headers: headers,
       })
         .then((response) => response.json())
         .then((data) => {

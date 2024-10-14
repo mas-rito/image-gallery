@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 
+import {
+  getImages,
+  getSingleImage,
+  searchImages,
+} from "@/servers/actions/image"
 import { Photo } from "pexels"
 
-const headers: Record<string, string> = {
-  Authorization: process.env.PEXELS_API_KEY as string,
-}
 type UseGetImagesParams = {
   fetchAgain: boolean
 }
@@ -14,21 +16,13 @@ export const useGetImages = ({ fetchAgain }: UseGetImagesParams) => {
   const [page, setPage] = useState<number>(1)
 
   useEffect(() => {
-    async function getImages() {
+    async function get() {
       const nextPage = page + 1
       setPage(nextPage)
-      const url = `https://api.pexels.com/v1/curated?per_page=28&page=${page}`
-
-      fetch(url, {
-        headers: headers,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setImages(data.photos)
-        })
+      getImages(nextPage).then((data) => setImages(data))
     }
 
-    getImages()
+    get()
   }, [fetchAgain])
 
   return { images }
@@ -43,19 +37,15 @@ export const useGetSigleImage = ({ imageId }: UseGetSigleImageParams) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    async function getImage() {
+    async function get() {
       setIsLoading(true)
-      fetch(`https://api.pexels.com/v1/photos/${imageId}`, {
-        headers: headers,
+      getSingleImage(imageId).then((data) => {
+        setImage(data)
+        setIsLoading(false)
       })
-        .then((response) => response.json())
-        .then((data) => {
-          setImage(data)
-          setIsLoading(false)
-        })
     }
 
-    getImage()
+    get()
   }, [imageId])
 
   return { image, isLoading }
@@ -78,15 +68,9 @@ export const useSearchImages = ({
       const nextPage = page + 1
       setPage(nextPage)
 
-      const url = `https://api.pexels.com/v1/search?query=${query}&per_page=28&page=${page}`
-
-      fetch(url, {
-        headers: headers,
+      searchImages(query, nextPage).then((data) => {
+        setImages(data)
       })
-        .then((response) => response.json())
-        .then((data) => {
-          setImages(data.photos)
-        })
     }
 
     getImages()

@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect } from "react"
-
+import { getImages } from "@/servers/actions/image"
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { Loader } from "lucide-react"
 import { Photo } from "pexels"
 import { useInView } from "react-intersection-observer"
@@ -11,24 +11,27 @@ import { EmptyData } from "../atoms/emptydata"
 import { LoaderImage } from "../atoms/loaderImage"
 import { CardGallery } from "../molecules/cardGallery"
 
-type Props = {
-  isLoading: boolean
-  data: Photo[]
-  setInView: React.Dispatch<React.SetStateAction<boolean>>
-  isDataEmpty: boolean
-}
+export const GalleriesLayout = () => {
+  const { ref } = useInView({
+    threshold: 0,
+    onChange(inView) {
+      if (inView) {
+        fetchNextPage()
+      }
+    },
+  })
 
-export const GalleriesLayout = ({
-  isLoading,
-  data,
-  setInView,
-  isDataEmpty,
-}: Props) => {
-  const { ref, inView } = useInView()
-
-  useEffect(() => {
-    setInView(inView)
-  }, [inView])
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery({
+    queryKey: ["images"],
+    queryFn: async ({ pageParam = 0 }) => {
+      const response: Photo[] = await getImages(pageParam)
+      return response
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+      return lastPageParam + 1
+    },
+  })
 
   return (
     <>
@@ -37,7 +40,7 @@ export const GalleriesLayout = ({
           <LoaderImage />
         ) : (
           <div className="">
-            {isDataEmpty ? (
+            {!data ? (
               <EmptyData />
             ) : (
               <>
@@ -51,16 +54,18 @@ export const GalleriesLayout = ({
                     }}
                   >
                     <Masonry gutter="1rem">
-                      {data.map((image, index) => (
-                        <CardGallery key={index} image={image} />
-                      ))}
+                      {data.pages.flatMap((page) =>
+                        page.map((image) => (
+                          <CardGallery key={image.id} image={image} />
+                        ))
+                      )}
                     </Masonry>
                   </ResponsiveMasonry>
                 </div>
 
                 <div
                   ref={ref}
-                  className="bg -mt-48 flex justify-center pb-8 pt-52 lg:pt-44"
+                  className="-mt-36 flex justify-center pb-8 pt-52 lg:pt-48"
                 >
                   <Loader className="animate-spin-slow text-red-600" />
                 </div>

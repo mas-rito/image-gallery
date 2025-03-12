@@ -12,6 +12,8 @@ type Props = {
 
 export const CardGallery = ({ image }: Props) => {
   const pathname = usePathname()
+  const aspectRatio = image.width / image.height
+
   return (
     <div className="group space-y-1 overflow-hidden">
       <div className="relative overflow-hidden rounded-lg">
@@ -41,6 +43,7 @@ export const CardGallery = ({ image }: Props) => {
           className="max-w-full select-none bg-zinc-200 transition-transform group-hover:scale-[1.03]"
           src={image.src.large}
           alt={image.alt || "image"}
+          style={{ aspectRatio: aspectRatio }}
         />
       </div>
       <h2 className="line-clamp-2 text-xs font-medium text-zinc-700 md:text-sm">

@@ -48,6 +48,7 @@ export const ModalDetailGallery = () => {
             {imageIsLoading ? (
               <Skeleton className="h-full w-full rounded-lg" />
             ) : (
+              // Need to fix
               <Image
                 width={700}
                 height={700}

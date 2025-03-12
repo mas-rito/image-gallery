@@ -11,6 +11,7 @@ export const getImages = async (page: number): Promise<Photo[]> => {
       },
     }
   )
+
   const data = await response.json()
   return data.photos
 }

@@ -1,7 +1,7 @@
 "use client"
 
-import { getImages } from "@/servers/actions/image"
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
+import { getImages, searchImages } from "@/servers/actions/image"
+import { useInfiniteQuery } from "@tanstack/react-query"
 import { Loader } from "lucide-react"
 import { Photo } from "pexels"
 import { useInView } from "react-intersection-observer"
@@ -11,7 +11,11 @@ import { EmptyData } from "../atoms/emptydata"
 import { LoaderImage } from "../atoms/loaderImage"
 import { CardGallery } from "../molecules/cardGallery"
 
-export const GalleriesLayout = () => {
+type Props = {
+  query?: string
+}
+
+export const GalleriesLayout = ({ query }: Props) => {
   const { ref } = useInView({
     threshold: 0,
     onChange(inView) {
@@ -22,9 +26,14 @@ export const GalleriesLayout = () => {
   })
 
   const { data, fetchNextPage, isLoading } = useInfiniteQuery({
-    queryKey: ["images"],
+    queryKey: ["images", query],
     queryFn: async ({ pageParam = 0 }) => {
-      const response: Photo[] = await getImages(pageParam)
+      let response: Photo[] = []
+      if (query) {
+        response = await searchImages(query, pageParam)
+      } else {
+        response = await getImages(pageParam)
+      }
       return response
     },
     initialPageParam: 0,

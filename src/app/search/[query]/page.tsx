@@ -1,11 +1,3 @@
-"use client"
-
-import { useEffect, useState } from "react"
-
-import { Photo } from "pexels"
-
-import { useSearchImages } from "@/hooks/useGetImages"
-
 import { GalleriesLayout } from "@/components/organisms/galleriesLayout"
 
 type Props = {
@@ -13,21 +5,8 @@ type Props = {
 }
 
 export default function SearchPage({ params }: Props) {
-  const [data, setData] = useState<Photo[]>([])
-  const [inView, setInView] = useState<boolean>(false)
-  const [isSetDataLoading, setIsSetDataLoading] = useState<boolean>(true)
-
-  const { images } = useSearchImages({
-    fetchAgain: inView,
-    query: params.query,
-  })
-
-  useEffect(() => {
-    setData((prevData) => [...prevData, ...images])
-    setIsSetDataLoading(false)
-  }, [images])
-
-  const decodedQuery = decodeURIComponent(params.query)
+  const query = params.query
+  const decodedQuery = decodeURIComponent(query)
 
   return (
     <div className="space-y-4">
@@ -36,12 +15,7 @@ export default function SearchPage({ params }: Props) {
           Hasil Pencarian dari &quot;{decodedQuery}&quot;
         </h1>
       </div>
-      <GalleriesLayout
-        isLoading={isSetDataLoading}
-        isDataEmpty={data.length < 0}
-        data={data}
-        setInView={setInView}
-      />
+      <GalleriesLayout query={query} />
     </div>
   )
 }
